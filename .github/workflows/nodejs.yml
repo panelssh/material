@@ -1,4 +1,4 @@
-name: Node CI
+name: build
 
 on: [push]
 
@@ -9,15 +9,15 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node: [8.16.1, 10.16.3, 12.11.0]
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+        node-version: ${{ matrix.node }}
+    - name: INSTALL AND BUILD
       run: |
         npm install
         npm run dist --if-present
